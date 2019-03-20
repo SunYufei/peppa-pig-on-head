@@ -47,7 +47,8 @@ LDFLAGS += -LC:/Develop/MSYS2/mingw64/lib \
 MONITOR = monitor.exe
 MONITOR_OBJS = monitor.o \
 	video/capture.o \
-	face/face.o
+	face/face.o \
+	piggy/piggy.o
 
 all:$(MONITOR)
 $(MONITOR):$(MONITOR_OBJS)
