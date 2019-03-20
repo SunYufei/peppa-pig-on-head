@@ -44,14 +44,30 @@ LDFLAGS += -LC:/Develop/MSYS2/mingw64/lib \
 	-lopengl32 \
 	-lglu32
 
+OBJS = monitor.o \
+	recorder.o \
+	video/capture.o \
+	video/writer.o \
+	face/face.o \
+	piggy/piggy.o
+
 MONITOR = monitor.exe
 MONITOR_OBJS = monitor.o \
 	video/capture.o \
 	face/face.o \
 	piggy/piggy.o
 
-all:$(MONITOR)
+RECORDER = recorder.exe
+RECORDER_OBJS = recorder.o \
+	video/capture.o \
+	video/writer.o \
+	face/face.o \
+	piggy/piggy.o
+
+all:$(MONITOR) $(RECORDER)
 $(MONITOR):$(MONITOR_OBJS)
 	$(CC) $(CFLAGS) $(MONITOR_OBJS) -o $(MONITOR) $(LDFLAGS)
-$(MONITOR_OBJS):%.o:%.cpp
+$(RECORDER):$(RECORDER_OBJS)
+	$(CC) $(CFLAGS) $(RECORDER_OBJS) -o $(RECORDER) $(LDFLAGS)
+$(OBJS):%.o:%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
