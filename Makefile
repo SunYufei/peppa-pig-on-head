@@ -44,12 +44,6 @@ LDFLAGS += -LC:/Develop/MSYS2/mingw64/lib \
 	-lopengl32 \
 	-lglu32
 
-OBJS = monitor.o \
-	recorder.o \
-	video/capture.o \
-	video/writer.o \
-	face/face.o \
-	piggy/piggy.o
 
 MONITOR = monitor.exe
 MONITOR_OBJS = monitor.o \
@@ -64,10 +58,26 @@ RECORDER_OBJS = recorder.o \
 	face/face.o \
 	piggy/piggy.o
 
-all:$(MONITOR) $(RECORDER)
+OBAMA = obama.exe
+OBAMA_OBJS = obama.o \
+	face/face.o \
+	piggy/piggy.o
+
+# all objs
+OBJS = monitor.o \
+	recorder.o \
+	video/capture.o \
+	video/writer.o \
+	face/face.o \
+	piggy/piggy.o \
+	obama.o
+
+all:$(MONITOR) $(RECORDER) $(OBAMA)
 $(MONITOR):$(MONITOR_OBJS)
 	$(CC) $(CFLAGS) $(MONITOR_OBJS) -o $(MONITOR) $(LDFLAGS)
 $(RECORDER):$(RECORDER_OBJS)
 	$(CC) $(CFLAGS) $(RECORDER_OBJS) -o $(RECORDER) $(LDFLAGS)
+$(OBAMA):$(OBAMA_OBJS)
+	$(CC) $(CFLAGS) $(OBAMA_OBJS) -o $(OBAMA) $(LDFLAGS)
 $(OBJS):%.o:%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

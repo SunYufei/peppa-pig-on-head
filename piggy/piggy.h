@@ -11,12 +11,18 @@ class Piggy {
   public:
     explicit Piggy(const string file);
 
-    void putOnHead(Mat &image, const Rect &location);
+    void drawPiggy(Mat &image, const Rect &location, bool top = true,
+                   bool side = false);
 
   private:
     Mat piggy;
     Mat small;
-    Mat_<Vec4b> small_;
+    Mat_<Vec4b> _small;
+    Mat_<Vec3b> _image;
+
+    int x, y, w, h;
+    double ratio;
+    int r, c, start;
 };
 
 #endif

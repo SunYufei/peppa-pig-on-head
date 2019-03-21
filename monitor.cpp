@@ -29,8 +29,10 @@ int main() {
             face.locations(frame, faces);
 
             if (faces.size() > 0)
-                // 将佩奇画到头上
-                piggy.putOnHead(frame, faces[0]);
+                piggy.drawPiggy(frame, faces[0], true, true);
+
+            // 辅助线
+            // rectangle(frame, faces[0], Scalar(0, 255, 0));
 
             // 在窗口上显示
             imshow("Monitor", frame);

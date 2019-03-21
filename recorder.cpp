@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char **argv) {
     // 检查参数
     if (argc != 3)
-        cout << "recorder.exe input.mp4 output.mp4\n";
+        cout << "recorder.exe [input.mp4] [output.mp4]\n";
     else {
         // Capture
         Capture capture(string(argv[1]));
@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
         Writer writer(string(argv[2]));
         // Face
         Face face("model.xml");
-
+        
         
     }
 
