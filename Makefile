@@ -48,12 +48,6 @@ LDFLAGS += -LC:/Develop/MSYS2/mingw64/lib \
 MONITOR = monitor.exe
 MONITOR_OBJS = monitor.o \
 	video/capture.o \
-	face/face.o \
-	piggy/piggy.o
-
-RECORDER = recorder.exe
-RECORDER_OBJS = recorder.o \
-	video/capture.o \
 	video/writer.o \
 	face/face.o \
 	piggy/piggy.o

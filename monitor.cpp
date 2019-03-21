@@ -22,7 +22,7 @@ int main() {
     vector<Rect> faces;
 
     // Monitor Windows
-    namedWindow("Monitor", WINDOW_AUTOSIZE);
+    namedWindow("Peppa Pig", WINDOW_AUTOSIZE);
 
     while (true) {
         if (capture.getFrame(frame)) {
@@ -35,11 +35,12 @@ int main() {
             // rectangle(frame, faces[0], Scalar(0, 255, 0));
 
             // 在窗口上显示
-            imshow("Monitor", frame);
+            imshow("Peppa Pig", frame);
 
             // 按ESC键退出
-            if (waitKey(33) == 27)
+            if (waitKey(33) == 27) {
                 break;
+            }
         }
     }
 
