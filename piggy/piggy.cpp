@@ -8,7 +8,7 @@ void Piggy::drawPiggy(Mat &image, const Rect &location, bool top, bool side) {
     y = location.y;
     w = location.width;
     h = location.height;
-    ratio = double(h) / piggy.rows;
+    ratio = double(h) / piggy.rows * 0.9;
     resize(piggy, small, Size(), ratio, ratio);
     _small = small;
     r = small.rows;
