@@ -1,7 +1,7 @@
 #include "face/face.h"
 #include "piggy/piggy.h"
 #include "video/capture.h"
-#include "video/writer.h"
+// #include "video/writer.h"
 
 #include <opencv2/highgui.hpp>
 using namespace cv;
@@ -11,7 +11,7 @@ int main() {
     Capture capture(0);
 
     // Writer
-    Writer writer("output.avi", 30.0, Size(capture.width, capture.height));
+    // Writer writer("output.avi", 30.0, Size(capture.width, capture.height));
 
     // Face
     Face face("model.xml");
@@ -39,7 +39,7 @@ int main() {
             // rectangle(frame, faces[0], Scalar(0, 255, 0));
 
             // 写入视频文件
-            writer.write(frame);
+            // writer.write(frame);
 
             // 在窗口上显示
             imshow("Peppa Pig", frame);
