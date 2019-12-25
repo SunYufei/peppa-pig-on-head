@@ -1,27 +1,10 @@
 import cv2
-import dlib
-
-face_detector = dlib.get_frontal_face_detector()
-
-piggy = cv2.imread('piggy.png', cv2.IMREAD_UNCHANGED)
 
 
-def location(gray):
-    ret = face_detector(gray, 0)
-    if len(ret) > 0:
-        return ret[0]
-    else:
-        return None
-
-
-def draw_peggy(image, face_location, top, side):
-    l = face_location.left()
-    t = face_location.top()
-    r = face_location.right()
-    b = face_location.bottom()
-    x, y, w, h = l, t, r - l, b - t
-    ratio = h / piggy.shape[0] * 0.9
-    small = cv2.resize(piggy, (0, 0), None, ratio, ratio)
+def draw_piggy(image, piggy_image, face_location, top: bool, side: bool):
+    x, y, w, h = face_location
+    ratio = h / piggy_image.shape[0] * 0.9
+    small = cv2.resize(piggy_image, (0, 0), None, ratio, ratio)
     r, c = small.shape[0], small.shape[1]
     start = (w - c) // 2
     if top:
@@ -43,20 +26,26 @@ def draw_peggy(image, face_location, top, side):
 
 
 capture = cv2.VideoCapture(0)
+width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-while capture.isOpened():
-    ret, frame = capture.read()
-    if ret:
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        loc = location(gray)
-        if loc is not None:
-            draw_piggy(frame, piggy, location, True, True)
+cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+piggy = cv2.imread('piggy.png', cv2.IMREAD_UNCHANGED)
+
+while True:
+    if capture.isOpened():
+        ret, frame = capture.read()
+        if ret:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            locations = cascade.detectMultiScale(gray, minSize=(64, 64))
+            if len(locations):
+                location = locations[0]
+                draw_piggy(frame, piggy, location, True, True)
 
         cv2.imshow('Monitor', frame)
         if cv2.waitKey(33) & 0xFF == ord('q'):
             break
-    else:
-        break
 
 capture.release()
 cv2.destroyAllWindows()

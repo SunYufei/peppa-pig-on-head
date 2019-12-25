@@ -18,12 +18,12 @@
 
 ### Python 版本
 
-本项目可运行的Python版本为3.6及以上
+本项目可运行的Python版本为3.6
 
 安装依赖包
 
 ```bash
-pip install opencv-python
+pip install opencv-python dlib==19.8.1
 ```
 
 运行
